@@ -1,4 +1,20 @@
 body{
     font-family: 'Chivo', sans-serif;
-    font-size: 55px;
+}
+
+/* Main Container Holding the Content */
+#main-container{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1200px){
+    
+#main-container{
+    width: 960px;
+}
+
+
+
 }
