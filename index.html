@@ -1,38 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Chivo" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="javascript/javascript.js"></script>
     <link href="assets/css/style.css" rel="stylesheet">
-    <script src="jquery-3.3.1.min.js"></script>
+    
     <title>Project1</title>
 </head>
-
 <body>
     <div id="main-container">
         <div class="jumbotron">
             <h1>Doctor Finder®</h1>
             <h6>Find the right doctor</h6>
         </div>
-
-
-        <form class="form-inline">
+        <form class="form-inline" id="main-search">
             <label class="sr-only" for="inlineFormInputName2">Specialty</label>
             <input type="text" class="form-control mb-2 mr-sm-2" id="specialty" placeholder="Doctor Specialty">
             <label class="sr-only" for="inlineFormInputName2">Symptoms</label>
             <input type="text" class="form-control mb-2 mr-sm-2" id="symptoms" placeholder="Symptoms">
-            <label class="sr-only" for="inlineFormInputName2">Zip Code</label>
+            <label class="sr-only" for="inlineFormInputName2">Zip Code (Required)</label>
             <input type="text" class="form-control mb-2 mr-sm-2" id="zip" placeholder="Zip Code">
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            <button type="submit" class="btn btn-primary mb-2" id= "submit">Search</button>
         </form>
         <br>
-        <div class="row" id = "content">
-
+        <div class="row">
             <div class="col-md-8" id="doctor-listing">
                 <table class="table">
                     <thead>
@@ -40,8 +36,8 @@
                             <th scope="col" id="pic">Picture</th>
                             <th scope="col" id="name">Name</th>
                             <th scope="col" id="specialities">Specialities</th>
-                            <th scope="col" id="address">Address</th>
-                            <th scope="col" id="insurance">Insurance</th>
+                            <th scope="col" id="address">City</th>
+                            <th scope="col" id="newpatients">Accepting new patients?</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -49,53 +45,30 @@
                         <td id="rowname"></td>
                         <td id="rowspecialities"></td>
                         <td id="rowaddress"></td>
-                        <td id="rowinsurance"></td>
+                        <td id="rownewpatients"></td>
                     </tbody>
                 </table>
             </div>
-
-
-
-            <div id="map"></div>
-
+            <div class="col-md-4" id="map"></div>
         </div>
-
     </div>
-
-    <footer class="footer">
+    <!-- <footer class="footer">
         <hr>
         <h1>footer</h1>
-    </footer>
-
+    </footer> -->
     <script>
-        // Initialize and add the map
+        var map;
         function initMap() {
-            // The location of Uluru
-            var uluru = {
-                lat: -25.344,
-                lng: 131.036
-            };
-            // The map, centered at Uluru
-            var map = new google.maps.Map(
-                document.getElementById('map'), {
-                    zoom: 4,
-                    center: uluru
-                });
-            // The marker, positioned at Uluru
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 32.774046, lng: -117.142454},
+            zoom: 10
+          });
         }
-    </script>
-    <!--Load the API from the specified URL
-            * The async attribute allows the browser to render the page while the API loads
-            * The key parameter will contain your own API key (which is not needed for this tutorial)
-            * The callback parameter executes the initMap() function
-            -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHncvJKl_oCaonkt-D5ZqXw_1AyrxLUcQ&callback=initMap">
-    </script>
-    <script src="javascript/javascript.js"></script>
-</body>
+      </script>
+      
 
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHncvJKl_oCaonkt-D5ZqXw_1AyrxLUcQ&callback=initMap"
+      async defer></script>
+
+</body>
 </html>
