@@ -57,7 +57,7 @@ $(document).ready(function () {
                 console.log(response)
                 for (i = 0; i < 9; i++) {
                     //new table rows
-                    var newTr = $("<tr>");
+                    var newTr = $("<tr>").attr("id","search-results");
                     var newTd1 = $("<img>");
                     var newTd2 = $("<td>");
                     var newTd3 = $("<td>");
