@@ -2,12 +2,11 @@
     box-sizing: border-box;
 }
 
-*:before,
-*:after{
+*:before, *:after {
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: 'Chivo', sans-serif;
     position: relative;
     height: 100%;
@@ -17,11 +16,10 @@ body{
     background-blend-mode: lighten;
     background-size: cover;
 }
-body img{
-    opacity: 0.5;
-}
+
 /* Main Container Holding the Content */
-#main-container{
+
+#main-container {
     margin-left: auto;
     margin-right: auto;
     max-width: 1200px;
@@ -31,13 +29,15 @@ body img{
     display: block;
     padding-bottom: 100px;
 }
-#main-search{
+
+#main-search {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
     text-align: center;
 }
-#main-search > .form-control{
+
+#main-search>.form-control {
     font-size: 20px;
     padding: 10px;
     border-radius: 0;
@@ -47,24 +47,32 @@ body img{
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     -o-border-radius: 0;
-} 
-.form-inline{
+}
+
+.form-inline {
     min-width: 0;
     width: 100%;
     display: inline-block;
     padding: 20px
 }
-.jumbotron{
+
+.jumbotron {
     background-color: rgba(255, 255, 255, 0.4);
     background-blend-mode: lighten;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
+.gm-style-mtc {
+    display: none;
+}
+
 #results {
-    background-color:white;
+    background-color: white;
     padding: 20px;
 }
-.footer{
+
+.footer {
     position: absolute;
     bottom: 0;
     text-align: center;
@@ -75,84 +83,99 @@ body img{
     background-color: rgba(255, 255, 255, 0.4);
     background-blend-mode: lighten;
 }
-#map{
+
+#map {
     height: 300px;
     width: 300px;
-}
-@media only screen and (min-width: 960px) and (max-width: 1200px){
-    
-#main-container{
-    width: 960px;
-}
-
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
-{box-sizing: border-box;}
+@media only screen and (min-width: 960px) and (max-width: 1200px) {
+    #main-container {
+        width: 960px;
+    }
+}
+
+    {
+    box-sizing: border-box;
+}
 
 /* Button used to open the contact form - fixed at the bottom of the page */
+
 .open-button {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  width: 280px;
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
 }
 
 /* The popup form - hidden by default */
+
 .form-popup {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
 }
 
 /* Add styles to the form container */
+
 .form-container {
-  max-width: 300px;
-  padding: 10px;
-  background-color: white;
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
 }
 
 /* Full-width input fields */
+
 .form-container input[type=text], .form-container input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
 }
 
 /* When the inputs get focus, do something */
+
 .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+    background-color: #ddd;
+    outline: none;
 }
 
 /* Set a style for the submit/login button */
+
 .form-container .btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
 }
 
 /* Add a red background color to the cancel button */
+
 .form-container .cancel {
-  background-color: red;
+    background-color: red;
 }
 
 /* Add some hover effects to buttons */
+
 .form-container .btn:hover, .open-button:hover {
-  opacity: 1;
+    opacity: 1;
 }
