@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Chivo" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="javascript/javascript.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="assets/css/style.css" rel="stylesheet">
     
     <title>Project1</title>
@@ -20,15 +21,15 @@
         </div>
         <form class="form-inline" id="main-search">
             <label class="sr-only" for="inlineFormInputName2">Specialty</label>
-            <input type="text" class="form-control mb-2 mr-sm-2" id="specialty" placeholder="Doctor Specialty">
+            <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="specialty" placeholder="Doctor Specialty (seperate with comma)">
             <label class="sr-only" for="inlineFormInputName2">Symptoms</label>
-            <input type="text" class="form-control mb-2 mr-sm-2" id="symptoms" placeholder="Symptoms">
+            <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="symptoms" placeholder="Symptoms (seperate with comma)">
             <label class="sr-only" for="inlineFormInputName2">Zip Code (Required)</label>
-            <input type="text" class="form-control mb-2 mr-sm-2" id="zip" placeholder="Zip Code">
-            <button type="submit" class="btn btn-primary mb-2" id= "submit">Search</button>
+            <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="zip" placeholder="Zip Code (required)">
+            <button type="submit" class="btn btn-primary mb-2" id= "submit"><i class="fas fa-search"></i> Search</button>
         </form>
         <br>
-        <div class="row">
+        <div class="row" id="results">
             <div class="col-md-8" id="doctor-listing">
                 <table class="table">
                     <thead>
@@ -51,11 +52,11 @@
             </div>
             <div class="col-md-4" id="map"></div>
         </div>
+        <footer class="footer">
+            <hr>
+            <h1>footer</h1>
+        </footer> 
     </div>
-    <!-- <footer class="footer">
-        <hr>
-        <h1>footer</h1>
-    </footer> -->
     <script>
         var map;
         function initMap() {
@@ -69,6 +70,6 @@
 
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHncvJKl_oCaonkt-D5ZqXw_1AyrxLUcQ&callback=initMap"
       async defer></script>
-
+      
 </body>
 </html>
