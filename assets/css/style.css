@@ -61,6 +61,7 @@ body {
     background-blend-mode: lighten;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    text-align:center;
 }
 
 .gm-style-mtc {

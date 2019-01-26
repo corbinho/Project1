@@ -1,11 +1,11 @@
 $(document).ready(function () {
     function openForm() {
         document.getElementById("myForm").style.display = "block";
-      }
-      
-      function closeForm() {
+    }
+
+    function closeForm() {
         document.getElementById("myForm").style.display = "none";
-      }
+    }
 
 
     var specialtyInput, symptomInput, zipInput;
@@ -63,6 +63,7 @@ $(document).ready(function () {
                     var newTd3 = $("<td>");
                     var newTd4 = $("<td>");
                     var newTd5 = $("<td>");
+                    var newTd6 = $("<img>");
 
                     //new variables for doctor office locations
 
@@ -84,8 +85,15 @@ $(document).ready(function () {
                         newTd5.text("No");
                     }
 
+                    if (response.data[i].ratings.length > 0) {
+                        newTd6 = $("<img>");
+                        newTd6.attr("src", response.data[i].ratings[0].image_url_small);
+                    } else {
+                        newTd6 = $("<td>");
+                        newTd6.text("N/A");
+                    }
                     //Append table data to table rows
-                    newTr.append(newTd1, newTd2, newTd3, newTd4, newTd5);
+                    newTr.append(newTd1, newTd2, newTd3, newTd4, newTd5, newTd6);
                     //Append table row to the table body
                     var tableBody = $("#table-body")
                     //append my new row to the table body
