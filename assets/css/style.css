@@ -74,6 +74,14 @@ body {
     text-align:center;
 }
 
+.jumbotron > h1{
+    font-size: 65px;
+}
+
+.jumbotron > h6 {
+    font-size: 30px;
+}
+
 .gm-style-mtc {
     display: none;
 }
