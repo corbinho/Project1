@@ -1,12 +1,21 @@
 $(document).ready(function () {
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+      }
+      
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+      }
 
 
     var specialtyInput, symptomInput, zipInput;
     //on load, hide the content
-    $("#content").hide();
+    $("#results").hide();
+    $(".footer").hide()
 
     $("#submit").on("click", function (event) {
-
+        $("#results").show();
+        $(".footer").show()
         //clear the table
         $("#table-body tr").remove();
         //get the user input
