@@ -21,9 +21,9 @@
         </div>
         <form class="form-inline" id="main-search">
             <label class="sr-only" for="inlineFormInputName2">Specialty</label>
-            <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="specialty" placeholder="Doctor Specialty (seperate with comma)">
+            <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="specialty" placeholder="Doctor Specialty">
             <label class="sr-only" for="inlineFormInputName2">Symptoms</label>
-            <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="symptoms" placeholder="Symptoms (seperate with comma)">
+            <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="symptoms" placeholder="Symptoms">
             <label class="sr-only" for="inlineFormInputName2">Zip Code (Required)</label>
             <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="zip" placeholder="Zip Code (required)">
             <button type="submit" class="btn btn-primary mb-2" id= "submit"><i class="fas fa-search"></i> Search</button>
@@ -39,6 +39,7 @@
                             <th scope="col" id="specialities">Specialities</th>
                             <th scope="col" id="address">City</th>
                             <th scope="col" id="newpatients">Accepting new patients?</th>
+                            <th scope="col" id="rating">Rating</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -47,6 +48,7 @@
                         <td id="rowspecialities"></td>
                         <td id="rowaddress"></td>
                         <td id="rownewpatients"></td>
+                        <td id="rownewrating"></td>
                     </tbody>
                 </table>
             </div>
@@ -54,7 +56,7 @@
         </div>
         <footer class="footer">
             <hr>
-            <h1>footer</h1>
+            <h3>&copy; Copyright 2019</h3>
         </footer> 
     </div>
     <script>

@@ -17,9 +17,7 @@ body{
     background-blend-mode: lighten;
     background-size: cover;
 }
-body img{
-    opacity: 0.5;
-}
+
 /* Main Container Holding the Content */
 #main-container{
     margin-left: auto;
@@ -59,6 +57,7 @@ body img{
     background-blend-mode: lighten;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    text-align:center;
 }
 #results {
     background-color:white;
