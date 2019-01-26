@@ -1,12 +1,14 @@
 $(document).ready(function () {
 
+
     var specialtyInput, symptomInput, zipInput;
     //on load, hide the content
     $("#content").hide();
 
     $("#submit").on("click", function (event) {
-        //clear the table
 
+        //clear the table
+        $("#table-body tr").remove();
         //get the user input
         event.preventDefault()
         specialtyInput = $("#specialty").val();
@@ -79,42 +81,29 @@ $(document).ready(function () {
                     var tableBody = $("#table-body")
                     //append my new row to the table body
                     tableBody.append(newTr)
-                   
 
-                    /* function initMap() {
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            center: {
-                                lat: 32.774046,
-                                lng: -117.142454
-                            },
-                            zoom: 10
-                        }); */
-                        var marker = new google.maps.Marker({
-                            position: myLatLng,
-                            map: map,
-                            title: response.data[i].profile.first_name + " " + response.data[i].profile.last_name
-                        
-                          });
-                          var infowindow = new google.maps.InfoWindow({
-                            content: response.data[i].profile.first_name + " " + response.data[i].profile.last_name  
-                          });
-                          
 
-                          
+                    //add markers to the map
+                    var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: response.data[i].profile.first_name + " " + response.data[i].profile.last_name,
+                    });
+                    var infowindow = new google.maps.InfoWindow({
+                        content: response.data[i].profile.first_name + " " + response.data[i].profile.last_name
+                    });
+
+
+
                     //}
                 }
 
             })
         });
 
-     
+
 
     })
-
-
-
-
-
 
 
 });
