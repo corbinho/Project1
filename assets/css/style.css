@@ -121,6 +121,7 @@ body {
     width: 100%;
     line-height: 65px;
     margin-top: 50px;
+    padding-bottom: 20px;
     background-image: none;
     background-color: rgba(255, 255, 255, 0.4);
     background-blend-mode: lighten;
@@ -140,10 +141,6 @@ body {
     #main-container {
         width: 960px;
     }
-}
-
-    {
-    box-sizing: border-box;
 }
 
 /* Button used to open the contact form - fixed at the bottom of the page */
