@@ -14,6 +14,8 @@ $(document).ready(function () {
     $(".footer").hide()
 
     $("#submit").on("click", function (event) {
+        var markers = [];
+        var infoWindows = [];
         $("#results").show();
         $(".footer").show()
         //clear the table
@@ -71,14 +73,14 @@ $(document).ready(function () {
                         lat: response.data[i].practices[0].lat,
                         lng: response.data[i].practices[0].lon
                     }
-                    console.log(myLatLng)
+
 
                     newTd1.attr("src", response.data[i].profile.image_url);
                     newTd2.text(response.data[i].profile.first_name + " " + response.data[i].profile.last_name);
                     newTd3.text(response.data[i].specialties[0].name);
                     newTd4.text(response.data[i].practices[0].visit_address.city);
                     var newPatients = response.data[i].practices[0].accepts_new_patients;
-                    console.log("accepting new patients: " + newPatients)
+
                     if (newPatients === true) {
                         newTd5.text("Yes");
                     } else {
@@ -101,23 +103,32 @@ $(document).ready(function () {
 
 
                     //add markers to the map
-                    var marker = new google.maps.Marker({
+                    markers[i] = new google.maps.Marker({
                         position: myLatLng,
                         map: map,
-                        title: response.data[i].profile.first_name + " " + response.data[i].profile.last_name,
+                        title: response.data[i].profile.first_name + " " + response.data[i].profile.last_name + " " + response.data[i].specialties[0].name,
+                        id: i,
+                
                     });
-                    var infowindow = new google.maps.InfoWindow({
-                        content: response.data[i].profile.first_name + " " + response.data[i].profile.last_name
+                    infowindow = new google.maps.InfoWindow({
+                        // content: response.data[i].profile.first_name + " " + response.data[i].profile.last_name,
+                        content: contentString
                     });
+                    var contentString = response.data[i].profile.first_name + " " + response.data[i].profile.last_name 
+                    
+                    google.maps.event.addListener(markers[i], 'click', function() {
+                        alert(markers[this.id].title)
+                      });
+                      console.log(markers)
+                    }   
+                    
 
 
-
-                    //}
                 }
 
-            })
+            )
         });
-
+        
 
 
     })
