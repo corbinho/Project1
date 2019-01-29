@@ -218,3 +218,33 @@ body {
 .form-container .btn:hover, .open-button:hover {
     opacity: 1;
 }
+#need-zip{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color: red;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+#zip{
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.form-error{
+    border: 2px solid red;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}

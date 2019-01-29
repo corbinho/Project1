@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Chivo" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="javascript/javascript.js"></script>
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
     <link href="assets/css/style.css" rel="stylesheet">
@@ -23,16 +21,17 @@
             <h1>Doctor Finder®</h1>
             <h5>Find the right doctor</h5>
         </div>
-        <form class="form-inline" id="main-search">
+        <!-- <div id = "needZip">Please input a zip code to continue </div> -->
+        <form class="form-inline" id="main-search" enctype="multipart/form-data" method="" action="" role="form">
             <label class="sr-only" for="inlineFormInputName2">Specialty</label>
             <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="specialty" placeholder="Doctor Specialty">
             <label class="sr-only" for="inlineFormInputName2">Symptoms</label>
             <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="symptoms" placeholder="Symptoms">
             <label class="sr-only" for="inlineFormInputName2">Zip Code (Required)</label>
-            <input type="text" class="form-control xs-4 mb-2 mr-sm-2" id="zip" placeholder="Zip Code (required)">
-
-            <button type="submit" class="btn btn-primary mb-2" id="submit" required><i class="fas fa-search"></i> Search</button>
-
+            <input type="text" maxlength="5" class="form-control xs-4 mb-2 mr-sm-2 help-block with-errors" name="zip" id="zip"
+                placeholder="Zip Code (required)" required="required" data-error="Please enter a valid ZIP code.">
+            <button type="submit" class="btn btn-primary mb-2" id="submit"><i class="fas fa-search"></i> Search</button>
+            <div class="col-md-6 col-sm-6" id="need-zip">Please Enter A Valid 5-Digit Zip Code</div>
         </form>
         <br>
         <div class="row" id="results">
@@ -66,22 +65,20 @@
         </footer>
     </div>
     <script>
-        var map;
+        // var map;
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: 32.774046,
-                    lng: -117.142454
-                },
-                zoom: 10
-            });
-        }
+        // function initMap() {
+        //     map = new google.maps.Map(document.getElementById('map'), {
+        //         center: {
+        //             lat: 32.774046,
+        //             lng: -117.142454
+        //         },
+        //         zoom: 10
+        //     });
+        // }
     </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHncvJKl_oCaonkt-D5ZqXw_1AyrxLUcQ&callback=initMap"
-        async defer></script>
-
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHncvJKl_oCaonkt-D5ZqXw_1AyrxLUcQ"></script>
+    <script src="javascript/javascript.js"></script>
 </body>
 
 </html>
