@@ -28,21 +28,47 @@ $(document).ready(function () {
     });
 
 
+    // jQuery function that only allows numbers in the input field
+    (function ($) {
+        $.fn.inputFilter = function (inputFilter) {
+            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                }
+            });
+        };
+    }(jQuery));
+
+    // Calling the jQuery function that filters the input to numbers only and assigns it to the zip code input field
+    $("#zip").inputFilter(function(value) {
+        return /^-?\d*$/.test(value); });
+
     var specialtyInput, symptomInput, zipInput;
     //on load, hide the content
     $("#results").hide();
-    $(".footer").hide()
-    $("#need-zip").hide()
+
+    $(".footer").hide();
+    $("#need-zip").hide();
+
 
     $("#submit").on("click", function (event) {
+
         var markers = [];
         var infoWindows = [];
-        // $("#results").show();
-        // $(".footer").show()
+
+        $("#results").show();
+        $(".footer").show()
+
+
         //clear the table
         $("#table-body tr").remove();
         //get the user input
-        event.preventDefault()
+        event.preventDefault();
         specialtyInput = $("#specialty").val();
         specialtyInput = specialtyInput.toLowerCase();
         console.log("Specialty: " + specialtyInput);
@@ -182,10 +208,13 @@ $(document).ready(function () {
 
 
 
+
                     }
+
 
                 )
             });
+
 
 
 
