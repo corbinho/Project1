@@ -33,12 +33,12 @@ $(document).ready(function () {
     $("#results").hide();
     $(".footer").hide()
     $("#need-zip").hide()
+    $("#no-doctors-error").hide();
 
     $("#submit").on("click", function (event) {
         var markers = [];
         var infoWindows = [];
-        // $("#results").show();
-        // $(".footer").show()
+
         //clear the table
         $("#table-body tr").remove();
         //get the user input
@@ -50,16 +50,18 @@ $(document).ready(function () {
         console.log("Symptoms: " + symptomInput);
         zipInput = $("#zip").val();
         console.log("Zip code: " + zipInput)
-        if (zipInput === '') {
+        if (zipInput === '' || zipInput < 10001) {
             $("#results").hide();
             $(".footer").hide();
             $("#need-zip").show(1000);
+            $("#no-doctors-error").hide(1000);
             $("#zip").addClass('form-error');
             return;
         } else {
             $("#results").show();
             $(".footer").show();
             $("#need-zip").hide(1000);
+            $("#no-doctors-error").hide(1000);
             $("#zip").removeClass('form-error');
             //translate the zip code input into longitude and latitude
             var lat = '';
@@ -76,7 +78,10 @@ $(document).ready(function () {
                     lng = results[0].geometry.location.lng();
                     console.log(lng);
                 } else {
-                    alert("Geocode was not successful for the following reason: " + status);
+                    $("#results").hide();
+                    $(".footer").hide();
+                    $("#no-doctors-error").show(1000);
+                    $("#zip").removeClass('form-error');
                 }
                 var docapikey = "3d8e6119d3a6fd86b2f6414e6f6ade72";
                 var resource_url = 'https://api.betterdoctor.com/2016-03-01/doctors?query=' + symptomInput + "&specialty_uid=" + specialtyInput + "&location=" + lat + "%2c" + lng + "%2c5" + '&user_key=' + docapikey;
@@ -100,9 +105,10 @@ $(document).ready(function () {
                     method: "GET"
                 }).then(function (response) {
                         console.log(response)
-                        for (var i = 0; i < 9; i++) {
+                        for (var i = 0; i < 11; i++) {
                             //new table rows
                             var newTr = $("<tr>").attr("id", "search-results");
+                            var newTd = $("<td>");
                             var newTd1 = $("<img>");
                             var newTd2 = $("<td>");
                             var newTd3 = $("<td>");
@@ -117,7 +123,7 @@ $(document).ready(function () {
                                 lng: response.data[i].practices[0].lon
                             }
 
-
+                            newTd.text(i + 1)
                             newTd1.attr("src", response.data[i].profile.image_url);
                             newTd2.text(response.data[i].profile.first_name + " " + response.data[i].profile.last_name);
                             newTd3.text(response.data[i].specialties[0].name);
@@ -138,23 +144,14 @@ $(document).ready(function () {
                                 newTd6.text("N/A");
                             }
                             //Append table data to table rows
-                            newTr.append(newTd1, newTd2, newTd3, newTd4, newTd5, newTd6);
+                            newTr.append(newTd, newTd1, newTd2, newTd3, newTd4, newTd5, newTd6);
                             //Append table row to the table body
                             var tableBody = $("#table-body")
                             //append my new row to the table body
                             tableBody.append(newTr)
-                            // var map;
-                            // console.log('google',google);
+                            newTd1.attr("alt", response.data[i].profile.bio);
+                            newTd1.attr("title", response.data[i].profile.bio);
 
-                            // function initMap() {
-                            //     map = new google.maps.Map(document.getElementById('map'), {
-                            //         center: {
-                            //             lat: myLatLng.lat,
-                            //             lng: myLatLng.lng
-                            //         },
-                            //         zoom: 10
-                            //     });
-                            // }
 
 
 
@@ -164,7 +161,7 @@ $(document).ready(function () {
                                 map: map,
                                 title: response.data[i].profile.first_name + " " + response.data[i].profile.last_name + " " + response.data[i].specialties[0].name,
                                 id: i,
-                                label: i.toString()
+                                label: (i + 1).toString()
 
                             });
                             infowindow = new google.maps.InfoWindow({
@@ -175,6 +172,7 @@ $(document).ready(function () {
 
                             google.maps.event.addListener(markers[i], 'click', function () {
                                 alert(markers[this.id].title)
+                                infowindow.open(map, markers[i])
                             });
 
                             // console.log(markers)
