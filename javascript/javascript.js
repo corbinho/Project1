@@ -76,7 +76,7 @@ $(document).ready(function () {
         console.log("Symptoms: " + symptomInput);
         zipInput = $("#zip").val();
         console.log("Zip code: " + zipInput)
-        if (zipInput === '') {
+        if (zipInput === '' || zipInput < 10000) {
             $("#results").hide();
             $(".footer").hide();
             $("#need-zip").show(1000);
@@ -190,7 +190,7 @@ $(document).ready(function () {
                                 map: map,
                                 title: response.data[i].profile.first_name + " " + response.data[i].profile.last_name + " " + response.data[i].specialties[0].name,
                                 id: i,
-                                label: i.toString()
+                                label: (i+1).toString()
 
                             });
                             infowindow = new google.maps.InfoWindow({
