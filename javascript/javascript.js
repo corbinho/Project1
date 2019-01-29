@@ -76,7 +76,7 @@ $(document).ready(function () {
         console.log("Symptoms: " + symptomInput);
         zipInput = $("#zip").val();
         console.log("Zip code: " + zipInput)
-        if (zipInput === '' || zipInput < 10000) {
+        if (zipInput === '' || zipInput < 10001) {
             $("#results").hide();
             $(".footer").hide();
             $("#need-zip").show(1000);
