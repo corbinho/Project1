@@ -8,24 +8,24 @@ $(document).ready(function () {
     }
 
     // jQuery function that only allows numbers in the input field
-    (function ($) {
-        $.fn.inputFilter = function (inputFilter) {
-            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
-                if (inputFilter(this.value)) {
-                    this.oldValue = this.value;
-                    this.oldSelectionStart = this.selectionStart;
-                    this.oldSelectionEnd = this.selectionEnd;
-                } else if (this.hasOwnProperty("oldValue")) {
-                    this.value = this.oldValue;
-                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-                }
-            });
-        };
-    }(jQuery));
-    // Calling the jQuery function that filters the input to numbers only and assigns it to the zip code input field
-    $("#zip").inputFilter(function (value) {
-        return /^-?\d*$/.test(value);
-    });
+    // (function ($) {
+    //     $.fn.inputFilter = function (inputFilter) {
+    //         return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+    //             if (inputFilter(this.value)) {
+    //                 this.oldValue = this.value;
+    //                 this.oldSelectionStart = this.selectionStart;
+    //                 this.oldSelectionEnd = this.selectionEnd;
+    //             } else if (this.hasOwnProperty("oldValue")) {
+    //                 this.value = this.oldValue;
+    //                 this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+    //             }
+    //         });
+    //     };
+    // }(jQuery));
+    // // Calling the jQuery function that filters the input to numbers only and assigns it to the zip code input field
+    // $("#zip").inputFilter(function (value) {
+    //     return /^-?\d*$/.test(value);
+    // });
 
 
     // jQuery function that only allows numbers in the input field
@@ -45,8 +45,9 @@ $(document).ready(function () {
     }(jQuery));
 
     // Calling the jQuery function that filters the input to numbers only and assigns it to the zip code input field
-    $("#zip").inputFilter(function(value) {
-        return /^-?\d*$/.test(value); });
+    $("#zip").inputFilter(function (value) {
+        return /^-?\d*$/.test(value);
+    });
 
     var specialtyInput, symptomInput, zipInput;
     //on load, hide the content
@@ -192,7 +193,7 @@ $(document).ready(function () {
                             var contentString = response.data[i].profile.first_name + " " + response.data[i].profile.last_name
 
                             google.maps.event.addListener(markers[i], 'click', function () {
-                                
+
                                 infowindow.open(map, markers[i])
                             });
 
