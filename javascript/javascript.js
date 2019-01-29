@@ -36,6 +36,11 @@ $(document).ready(function () {
 
     $("#submit").on("click", function (event) {
 
+        var markers = [];
+        var infoWindows = [];
+        $("#results").show();
+        $(".footer").show()
+
         //clear the table
         $("#table-body tr").remove();
         //get the user input
@@ -47,6 +52,7 @@ $(document).ready(function () {
         console.log("Symptoms: " + symptomInput);
         zipInput = $("#zip").val();
         console.log("Zip code: " + zipInput)
+
         if (zipInput === '' || zipInput > 99999) {
             $("#results").hide();
             $(".footer").hide();
@@ -76,6 +82,103 @@ $(document).ready(function () {
                     console.log(lng);
                 } else {
                     alert("Geocode was not successful for the following reason: " + status);
+
+
+        //translate the zip code input into longitude and latitude
+        var lat = '';
+        var lng = '';
+        var address = zipInput;
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+            'address': address
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                console.log(results);
+                lat = results[0].geometry.location.lat();
+                console.log(lat);
+                lng = results[0].geometry.location.lng();
+                console.log(lng);
+            } else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+            var docapikey = "3d8e6119d3a6fd86b2f6414e6f6ade72";
+            var resource_url = 'https://api.betterdoctor.com/2016-03-01/doctors?query=' + symptomInput + "&specialty_uid=" + specialtyInput + "&location=" + lat + "%2c" + lng + "%2c5" + '&user_key=' + docapikey;
+            console.log(resource_url)
+
+            //get the response
+            $.ajax({
+                url: resource_url,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response)
+                for (i = 0; i < 9; i++) {
+                    //new table rows
+                    var newTr = $("<tr>").attr("id","search-results");
+                    var newTd1 = $("<img>");
+                    var newTd2 = $("<td>");
+                    var newTd3 = $("<td>");
+                    var newTd4 = $("<td>");
+                    var newTd5 = $("<td>");
+                    var newTd6 = $("<img>");
+
+                    //new variables for doctor office locations
+
+                    var myLatLng = {
+                        lat: response.data[i].practices[0].lat,
+                        lng: response.data[i].practices[0].lon
+                    }
+
+
+                    newTd1.attr("src", response.data[i].profile.image_url);
+                    newTd2.text(response.data[i].profile.first_name + " " + response.data[i].profile.last_name);
+                    newTd3.text(response.data[i].specialties[0].name);
+                    newTd4.text(response.data[i].practices[0].visit_address.city);
+                    var newPatients = response.data[i].practices[0].accepts_new_patients;
+
+                    if (newPatients === true) {
+                        newTd5.text("Yes");
+                    } else {
+                        newTd5.text("No");
+                    }
+
+                    if (response.data[i].ratings.length > 0) {
+                        newTd6 = $("<img>");
+                        newTd6.attr("src", response.data[i].ratings[0].image_url_small);
+                    } else {
+                        newTd6 = $("<td>");
+                        newTd6.text("N/A");
+                    }
+                    //Append table data to table rows
+                    newTr.append(newTd1, newTd2, newTd3, newTd4, newTd5, newTd6);
+                    //Append table row to the table body
+                    var tableBody = $("#table-body")
+                    //append my new row to the table body
+                    tableBody.append(newTr)
+
+
+                    //add markers to the map
+                    markers[i] = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: response.data[i].profile.first_name + " " + response.data[i].profile.last_name + " " + response.data[i].specialties[0].name,
+                        id: i,
+                
+                    });
+                    infowindow = new google.maps.InfoWindow({
+                        // content: response.data[i].profile.first_name + " " + response.data[i].profile.last_name,
+                        content: contentString
+                    });
+                    var contentString = response.data[i].profile.first_name + " " + response.data[i].profile.last_name 
+                    
+                    google.maps.event.addListener(markers[i], 'click', function() {
+                        alert(markers[this.id].title)
+                      });
+                      console.log(markers)
+                    }   
+                    
+
+
+
                 }
                 var docapikey = "3d8e6119d3a6fd86b2f6414e6f6ade72";
                 var resource_url = 'https://api.betterdoctor.com/2016-03-01/doctors?query=' + symptomInput + "&specialty_uid=" + specialtyInput + "&location=" + lat + "%2c" + lng + "%2c5" + '&user_key=' + docapikey;
@@ -147,9 +250,14 @@ $(document).ready(function () {
                         //}
                     }
 
+
                 })
             });
 
+
+            )
+        });
+        
 
 
         }
