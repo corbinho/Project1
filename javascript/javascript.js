@@ -54,6 +54,7 @@ $(document).ready(function () {
 
     $(".footer").hide();
     $("#need-zip").hide();
+    $("#no-doctors-error").hide();
 
 
     $("#submit").on("click", function (event) {
@@ -80,12 +81,14 @@ $(document).ready(function () {
             $("#results").hide();
             $(".footer").hide();
             $("#need-zip").show(1000);
+            $("#no-doctors-error").hide(1000);
             $("#zip").addClass('form-error');
             return;
         } else {
             $("#results").show();
             $(".footer").show();
             $("#need-zip").hide(1000);
+            $("#no-doctors-error").hide(1000);
             $("#zip").removeClass('form-error');
             //translate the zip code input into longitude and latitude
             var lat = '';
@@ -102,7 +105,10 @@ $(document).ready(function () {
                     lng = results[0].geometry.location.lng();
                     console.log(lng);
                 } else {
-                    alert("Geocode was not successful for the following reason: " + status);
+                    $("#results").hide();
+            $(".footer").hide();
+            $("#no-doctors-error").show(1000);
+            $("#zip").addClass('form-error');
                 }
                 var docapikey = "3d8e6119d3a6fd86b2f6414e6f6ade72";
                 var resource_url = 'https://api.betterdoctor.com/2016-03-01/doctors?query=' + symptomInput + "&specialty_uid=" + specialtyInput + "&location=" + lat + "%2c" + lng + "%2c5" + '&user_key=' + docapikey;
