@@ -40,7 +40,6 @@
             <button type="submit" class="btn btn-primary mb-2" id="submit"><i class="fas fa-search"></i> Search</button>
             <div class="col-md-6 col-sm-6" id="need-zip">Please Enter A Valid 5-Digit Zip Code</div>
             <div class="col-md-6 col-sm-6" id="no-doctors-error">No Doctors Found in that ZIP Code. Please try again.</div>
-
         </form>
         <br>
         <div class="row" id="results">
@@ -48,6 +47,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col" id="resultNum">Result</th>
                             <th scope="col" id="pic">Picture</th>
                             <th scope="col" id="name">Name</th>
                             <th scope="col" id="specialities">Specialities</th>
@@ -75,7 +75,6 @@
 
         </footer>
     </div>
-
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHncvJKl_oCaonkt-D5ZqXw_1AyrxLUcQ"></script>
     <script src="javascript/javascript.js"></script>
 
