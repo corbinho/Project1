@@ -192,7 +192,7 @@ $(document).ready(function () {
                             var contentString = response.data[i].profile.first_name + " " + response.data[i].profile.last_name
 
                             google.maps.event.addListener(markers[i], 'click', function () {
-                                alert(markers[this.id].title)
+                                
                                 infowindow.open(map, markers[i])
                             });
 
